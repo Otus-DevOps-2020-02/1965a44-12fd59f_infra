@@ -28,6 +28,8 @@ someinternalhost_IP = 10.132.0.4
 ```
 ### HOMEWORK 4
 
+**NOTE:** During Travis CI tests your app in your cloud MUST be running
+
 Creating the instance
 ```
 gcloud compute instances create reddit-app\
