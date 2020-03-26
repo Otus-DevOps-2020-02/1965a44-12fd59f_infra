@@ -6,6 +6,6 @@ installing your bundle as root will break this application for all non-root
 users on this machine.
 COMMENT
 
-su - appuser -c '/usr/bin/git clone -b monolith https://github.com/express42/reddit.git; \
-cd reddit && bundle install; \
-puma -d'
+/usr/bin/git clone -b monolith https://github.com/express42/reddit.git
+cd reddit && bundle install
+puma -d
