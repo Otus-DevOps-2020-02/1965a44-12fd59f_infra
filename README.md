@@ -73,15 +73,15 @@ testapp_port = 9292
 ### HOMEWORK 5
 
 **Base task**
-1. Packer installed on the local system [Packer Installation Guide](https://packer.io/intro/getting-started/install.html#precompiled-binaries)
+1. Installed the Packer on the local system [Packer Installation Guide](https://packer.io/intro/getting-started/install.html#precompiled-binaries)
    - To check the version run the `packer -v` command
-2. ADC for GCP created using the `gcloud auth application-default login` command
-3. The template created for building a "Fry" image [ubuntu16.json](packer/ubuntu16.json)
+2. Created ADC for GCP using the `gcloud auth application-default login` command
+3. Created the template for building a "Fry" image [ubuntu16.json](packer/ubuntu16.json)
 4. The reddit-base image has built on GCP with `packer build -var-file=variables.json ubuntu16.json` command
 
 **Advanced task**
-1. The template created for building a "Bake" image [immutable.json](packer/immutable.json)
-2. Systemd unit file created [reddit.service](packer/files/reddit.service)
+1. Created the template for building a "Bake" image [immutable.json](packer/immutable.json)
+2. Created the systemd unit file [reddit.service](packer/files/reddit.service)
 3. Prepared script for auto app deployment [deploy.sh](packer/scripts/deploy.sh)
 4. The reddit-full image has built on GCP using the `packer build -var-file=variables.json immutable.json` command
-5. The script created to run the VM instance [create-reddit-vm.sh](config-scripts/create-reddit-vm.sh)
+5. Created the script to run a VM instance [create-reddit-vm.sh](config-scripts/create-reddit-vm.sh)
