@@ -1,0 +1,42 @@
+{
+    "variables":
+        {
+            "project_id": null,
+            "source_image_family": null,
+            "image_description": "Bake VM image for reddit-app",
+            "machine_type": "f1-micro",
+            "disk_type": "pd-standard",
+            "disk_size": "10",
+            "network_id": "default"
+        },
+    "builders": [
+        {
+            "type": "googlecompute",
+            "project_id": "{{user `project_id`}}",
+            "machine_type": "{{user `machine_type`}}",
+            "image_name": "reddit-full-{{timestamp}}",
+            "image_description": "{{user `image_description`}}",
+            "image_family": "reddit-full",
+            "source_image_family": "{{user `source_image_family`}}",
+            "disk_type": "{{user `disk_type`}}",
+            "disk_size": "{{user `disk_size`}}",
+            "zone": "europe-west1-d",
+            "network": "{{user `network_id`}}",
+            "tags": "puma-server",
+            "preemptible": true,
+            "ssh_username": "appuser"
+        }
+    ],
+
+    "provisioners": [
+        {
+	    "type": "file",
+	    "source": "files/reddit.service",
+	    "destination": "/tmp/reddit.service"
+	},
+        {
+            "type": "shell",
+            "script": "scripts/deploy.sh"
+        }
+    ]
+}

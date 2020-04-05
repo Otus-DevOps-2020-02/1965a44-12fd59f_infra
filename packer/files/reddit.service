@@ -1,0 +1,16 @@
+[Unit]
+Description=Simple Reddit App
+After=syslog.target network.target
+
+[Service]
+WorkingDirectory=/home/appuser/reddit
+Type=forking
+ExecStart=/usr/local/bin/puma -d --dir /home/appuser/reddit
+ExecStop=/usr/bin/pkill --pidfile /home/appuser/reddit/reddit-app.pid
+ExecStartPost=/bin/sh -c 'umask 022; sleep 2; lsof -t -i tcp:9292 |tee /home/appuser/reddit/reddit-app.pid'
+PIDFile=/home/appuser/reddit/reddit-app.pid
+User=appuser
+Group=appuser
+
+[Install]
+WantedBy=graphical.target
