@@ -1,0 +1,11 @@
+terraform init
+terraform validate
+terraform plan -out reddit-app.tfplan
+terraform apply "reddit-app.tfplan"
+terraform destroy
+terraform show | grep nat_ip
+terraform refresh
+terraform output
+terraform output app_external_ip
+terraform taint google_compute_instance.app
+terraform fmt

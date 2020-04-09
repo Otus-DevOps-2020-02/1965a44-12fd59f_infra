@@ -1,6 +1,8 @@
 # 1965a44-12fd59f_infra
 1965a44-12fd59f Infra repository
 
+[Basic writing and formatting syntax](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax)
+
 ### HOMEWORK 3
 
 One line cmd to get in: `ssh -l <user> -A -J <user>@<public_ip> <internal_host_ip>`
@@ -85,3 +87,7 @@ testapp_port = 9292
 3. Prepared script for auto app deployment [deploy.sh](packer/scripts/deploy.sh)
 4. The reddit-full image has built on GCP using the `packer build -var-file=variables.json immutable.json` command
 5. Created the script to run a VM instance [create-reddit-vm.sh](config-scripts/create-reddit-vm.sh)
+
+
+### HOMEWORK 6
+#### Terraform
