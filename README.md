@@ -91,3 +91,41 @@ testapp_port = 9292
 
 ### HOMEWORK 6
 #### Terraform
+
+**Advanced task 1**
+
+After adding ssh keys with Terraform from [metadata.tf](terraform/metadata.tf):
+```bash
+appuser@reddit-app:~$ getent passwd |grep appuser
+appuser:x:1001:1002::/home/appuser:/bin/bash
+appuser1:x:1002:1003::/home/appuser1:/bin/bash
+appuser2:x:1003:1004::/home/appuser2:/bin/bash
+appuser3:x:1004:1005::/home/appuser3:/bin/bash
+
+$ ssh appuser1@34.76.120.103
+appuser1@reddit-app:~$ whoami
+appuser1
+appuser1@reddit-app:~$
+
+$ ssh appuser2@34.76.120.103
+appuser2@reddit-app:~$ whoami
+appuser2
+appuser2@reddit-app:~$
+
+$ ssh appuser3@34.76.120.103
+appuser3@reddit-app:~$ whoami
+appuser3
+appuser3@reddit-app:~$
+```
+For some reasons you probably won't want to use project-wide public keys on certain VMs to accomplish this objective add configuration to VM from the guide below:
+
+https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys?hl=en_GB#block-project-keys
+
+_*A problem 1*_
+
+When you add an ssh key through the web interface you can't change username correctly thus you get the issue when you try to connect to a host:
+```shell
+$ ssh appuser-web@34.76.120.103
+appuser-web@34.76.120.103: Permission denied (publickey).
+```
+Another notice is when adding ssh keys using Terraform is in that it overwrites existing keys in the GCP metadata key-chain, and keeps the previous key in its state if it's a separate resource.
