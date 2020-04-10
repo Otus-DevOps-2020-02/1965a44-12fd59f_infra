@@ -1,7 +1,9 @@
 # 1965a44-12fd59f_infra
 1965a44-12fd59f Infra repository
 
+##### Text formatting
 [Basic writing and formatting syntax](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax)
+[Markdown Guide](https://www.markdownguide.org/basic-syntax)
 
 ### HOMEWORK 3
 
@@ -122,7 +124,7 @@ For some reasons you probably won't want to use project-wide public keys on cert
 
 https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys?hl=en_GB#block-project-keys
 
-_*A problem*_
+***A problem***
 
 When you add an ssh key through the web interface you can't change username correctly thus you get the issue when you try to connect to a host:
 ```shell
@@ -132,6 +134,7 @@ appuser-web@34.76.120.103: Permission denied (publickey).
 Another notice is when adding ssh keys using Terraform is in that it overwrites existing keys in the GCP metadata key-chain, and keeps the previous key in its state if it's a separate resource.
 
 **References:**
+
 https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys#project-wide
 https://stackoverflow.com/questions/38645002/how-to-add-an-ssh-key-to-an-gcp-instance-using-terraform
 
@@ -168,15 +171,16 @@ gcloud compute forwarding-rules create fwd-rule-000 \
     --address network-lb-000 \
     --target-pool nlb-pool-000
 ```
-Above, we see the minimum necessary parameters for creating a load balancer, which will be plenty for leverage in Terraform [lb.tf](terraform/lb.tf)
+Above, we see the minimum required parameters for creating a load balancer, which will be plenty for leverage in Terraform [lb.tf](terraform/lb.tf)
 
 To check health status of each node in pool use this command: `gcloud compute target-pools get-health nlb-pool-000`
 
-_*A problem*_
+***A problem***
 
 Each node in the HA pool works as a standalone service without any relationship with each other. Both nodes have own databases. There is no necessity to stop any of them the problem lies in the fact that we have a split-brain hence we give a different states of our app to internet users.
 
 **References:**
+
 https://cloud.google.com/load-balancing/docs
 https://cloud.google.com/load-balancing/docs/network
 https://cloud.google.com/load-balancing/docs/network/setting-up-network
