@@ -17,12 +17,6 @@ variable public_key_path {
 variable disk_image {
   description = "Disk image"
 }
-variable app_disk_image {
-  description = "Base disk image for reddit-app"
-}
-variable db_disk_image {
-  description = "Base disk image for mongodb"
-}
 variable "private_key_path" {
   description = "Path to the secret key used for ssh access"
 }
