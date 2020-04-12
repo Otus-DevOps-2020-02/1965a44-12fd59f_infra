@@ -12,6 +12,7 @@ module "app" {
   public_key_path = var.public_key_path
   zone            = var.zone
   app_disk_image  = var.app_disk_image
+  source_ranges = ["93.123.189.16/32"]
 }
 
 module "db" {
@@ -19,6 +20,11 @@ module "db" {
   public_key_path = var.public_key_path
   zone            = var.zone
   db_disk_image   = var.db_disk_image
+}
+
+module "vpc" {
+  source = "./modules/vpc"
+  source_ranges = ["93.123.189.16/32"]
 }
 
 ##################################################################################
@@ -31,22 +37,4 @@ provider "google" {
   # ID проекта
   project = var.project
   region  = var.region
-}
-
-##################################################################################
-# RESOURCES
-##################################################################################
-
-resource "google_compute_firewall" "firewall_ssh" {
-  description = "Allow SSH from anywhere"
-  name = "default-allow-ssh"
-  network = "default"
-  priority = "65534"
-
-  allow {
-    protocol = "tcp"
-    ports = ["22"]
-  }
-
-  source_ranges = ["0.0.0.0/0"]
 }

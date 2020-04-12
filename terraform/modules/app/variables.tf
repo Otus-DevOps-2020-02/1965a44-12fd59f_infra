@@ -13,3 +13,7 @@ variable instance_count {
   # Значение по умолчанию
   default = "1"
 }
+variable source_ranges {
+  description = "Allowed IP addresses"
+  default = ["0.0.0.0/0"]
+}

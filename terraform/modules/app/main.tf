@@ -47,7 +47,7 @@ resource "google_compute_firewall" "firewall_puma" {
     ports    = ["9292"]
   }
   # Каким адресам разрешаем доступ
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = var.source_ranges
   # Правило применимо для инстансов с перечисленными тэгами
   target_tags = ["reddit-app"]
 }
