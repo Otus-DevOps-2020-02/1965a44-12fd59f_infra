@@ -1,11 +1,12 @@
 terraform init
 terraform validate
-terraform plan -out reddit-app.tfplan
-terraform apply "reddit-app.tfplan"
+terraform plan -out terraform.tfplan
+terraform apply terraform.tfplan
 terraform destroy
 terraform show | grep nat_ip
 terraform refresh
 terraform output
 terraform output app_external_ip
-terraform taint google_compute_instance.app
+terraform taint google_compute_instance.app             #Manually mark a resource for recreation
 terraform fmt
+terraform import google_compute_firewall.firewall_ssh default-allow-ssh
