@@ -39,7 +39,7 @@ module "app" {
   zone              = var.zone
   app_disk_image    = var.app_disk_image
   source_ranges     = ["93.123.189.16/32"]
-  app_instance_name = "reddit-app-prod"
+  app_instance_name = "reddit-app-prd"
   auto_restart      = true
   preempt           = false
   instance_count    = 1
@@ -50,7 +50,7 @@ module "db" {
   public_key_path  = var.public_key_path
   zone             = var.zone
   db_disk_image    = var.db_disk_image
-  db_instance_name = "reddit-db-prod"
+  db_instance_name = "reddit-dbs-prd"
   auto_restart     = true
   preempt          = false
 }
