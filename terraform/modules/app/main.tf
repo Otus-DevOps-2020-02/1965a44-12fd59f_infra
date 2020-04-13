@@ -1,5 +1,5 @@
 resource "google_compute_instance" "app" {
-  name         = "reddit-app${count.index}"
+  name         = "${var.app_instance_name}-${count.index}"
   machine_type = "g1-small"
   zone         = var.zone
   count        = var.instance_count
@@ -13,8 +13,8 @@ resource "google_compute_instance" "app" {
   }
 
   scheduling {
-    automatic_restart = false
-    preemptible       = true
+    automatic_restart = var.auto_restart
+    preemptible       = var.preempt
   }
 
   # определение сетевого интерфейса
@@ -24,7 +24,7 @@ resource "google_compute_instance" "app" {
     # использовать ephemeral IP для доступа из Интернет
     access_config {
       nat_ip = google_compute_address.app_ip.address
-      }
+    }
   }
 
   metadata = {

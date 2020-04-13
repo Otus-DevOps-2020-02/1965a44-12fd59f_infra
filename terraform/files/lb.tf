@@ -2,17 +2,17 @@
 # CREATE FORWARDING RULE ANd ADDRESS???
 # ------------------------------------------------------------------------------
 resource "google_compute_forwarding_rule" "fwd-rule-000" {
-  name                  = "fwd-rule-000"
-  target                = google_compute_target_pool.nlb-pool-000.self_link
-  port_range            = "9292"
+  name       = "fwd-rule-000"
+  target     = google_compute_target_pool.nlb-pool-000.self_link
+  port_range = "9292"
 }
 # ------------------------------------------------------------------------------
 # CREATE HEALTH CHECK
 # ------------------------------------------------------------------------------
 resource "google_compute_http_health_check" "hlth-chck-000" {
-  name                = "hlth-chck-000"
-  port                = "9292"
-  }
+  name = "hlth-chck-000"
+  port = "9292"
+}
 # ------------------------------------------------------------------------------
 # CREATE TARGET POOL
 # ------------------------------------------------------------------------------

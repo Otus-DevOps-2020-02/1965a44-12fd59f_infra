@@ -210,7 +210,7 @@ _Terraform_
 
 A little hint to show a summary for terraform execution plan:
 
-    echo "alias tfplan='terraform plan | grep \"# google\|Plan:\"'" >> ~/.bash_aliases
+    echo "alias tfplan='terraform plan | grep \"# google\|# module\|Plan:\"'" >> ~/.bash_aliases
 
 Customize the `diff` command:
 

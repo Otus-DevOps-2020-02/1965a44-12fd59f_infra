@@ -1,18 +1,18 @@
 resource "google_compute_instance" "db" {
-  name = "reddit-db"
+  name         = var.db_instance_name
   machine_type = "g1-small"
-  zone = var.zone
-  tags = ["reddit-db"]
+  zone         = var.zone
+  tags         = ["reddit-db"]
 
   boot_disk {
-      initialize_params {
+    initialize_params {
       image = var.db_disk_image
-      }
+    }
   }
 
   scheduling {
-    automatic_restart = false
-    preemptible       = true
+    automatic_restart = var.auto_restart
+    preemptible       = var.preempt
   }
 
   network_interface {
@@ -22,14 +22,14 @@ resource "google_compute_instance" "db" {
   metadata = {
     ssh-keys = "appuser:${file(var.public_key_path)}"
   }
- }
+}
 
- resource "google_compute_firewall" "firewall_mongo" {
-  name = "non-default-allow-mongodb"
+resource "google_compute_firewall" "firewall_mongo" {
+  name    = "non-default-allow-mongodb"
   network = "default"
   allow {
     protocol = "tcp"
-    ports = ["27017"]
+    ports    = ["27017"]
   }
   target_tags = ["reddit-db"]
   source_tags = ["reddit-app"]
