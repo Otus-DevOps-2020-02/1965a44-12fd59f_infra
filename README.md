@@ -208,7 +208,7 @@ _Other_:
 ### HOMEWORK 7
 _Terraform_
 
-A little hint to show a summary for terraform execution plan:
+A little hint to show a summary for terraform execution plan using the alias `tfplan`:
 
     echo "alias tfplan='terraform plan | grep \"# google\|# module\|Plan:\"'" >> ~/.bash_aliases
 
@@ -216,9 +216,34 @@ Customize the `diff` command:
 
     echo "alias diff='diff --color -u'" >> ~/.bash_aliases
 
-
 **References:**  
 _Terraform docs_:  
 <https://www.terraform.io/docs/configuration/resources.html>  
 <https://www.terraform.io/docs/configuration/resources.html#depends_on-explicit-resource-dependencies>  
+
+
+**Advanced task 1**
+
+In this task tracking and the state of Terraform objects is transferred to Google Cloud Storage: [terraform/stage/backend.tf](terraform/stage/backend.tf)  
+Before you need to create a bucket: [terraform/storage-bucket.tf](terraform/storage-bucket.tf)  
+
+Terraform must initialize any configured backend before use. This can be done by simply running `terraform init`.
+
+Accordingly, after applying configuration from _stage_ and switching to _prod_ environment, running `tfplan` shows only one change:
+
+    $ tfplan
+    # module.vpc.google_compute_firewall.firewall_ssh will be updated in-place
+    Plan: 0 to add, 1 to change, 0 to destroy.
+
+
+**References:**  
+_Terraform docs_:  
+<https://www.terraform.io/docs/backends/config.html>  
+<https://www.terraform.io/docs/backends/types/gcs.html>  
+<https://www.terraform.io/docs/configuration/data-sources.html>  
+<https://www.terraform.io/docs/providers/terraform/d/remote_state.html>  
+<https://www.terraform.io/docs/providers/google/r/storage_bucket.html>
+
+_Terraform modules_:
+<https://registry.terraform.io/modules/SweetOps/storage-bucket/google/0.3.1>  
 <https://www.terraform.io/docs/modules/sources.html>  

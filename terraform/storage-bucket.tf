@@ -22,11 +22,11 @@ provider "google" {
 }
 
 module "storage-bucket" {
-  source  = "SweetOps/storage-bucket/google"
-  version = "0.3.1"
-  project = var.project
+  source   = "SweetOps/storage-bucket/google"
+  version  = "0.3.1"
+  project  = var.project
   location = var.region
-  name = "core-eu"
+  name     = "tfstate-core-eu"
 }
 
 output storage-bucket_url {

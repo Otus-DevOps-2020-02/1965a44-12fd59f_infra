@@ -1,5 +1,5 @@
 resource "google_compute_instance" "db" {
-  name         = var.db_instance_name
+  name         = "reddit-db"
   machine_type = "g1-small"
   zone         = var.zone
   tags         = ["reddit-db"]
@@ -11,8 +11,8 @@ resource "google_compute_instance" "db" {
   }
 
   scheduling {
-    automatic_restart = var.auto_restart
-    preemptible       = var.preempt
+    automatic_restart = false
+    preemptible       = true
   }
 
   network_interface {

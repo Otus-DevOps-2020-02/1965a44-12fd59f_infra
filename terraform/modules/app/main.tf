@@ -1,5 +1,5 @@
 resource "google_compute_instance" "app" {
-  name         = "${var.app_instance_name}-${count.index}"
+  name         = "reddit-app${count.index}"
   machine_type = "g1-small"
   zone         = var.zone
   count        = var.instance_count
@@ -13,8 +13,8 @@ resource "google_compute_instance" "app" {
   }
 
   scheduling {
-    automatic_restart = var.auto_restart
-    preemptible       = var.preempt
+    automatic_restart = false
+    preemptible       = true
   }
 
   # определение сетевого интерфейса

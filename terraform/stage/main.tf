@@ -34,25 +34,19 @@ variable db_disk_image {
 ##################################################################################
 
 module "app" {
-  source            = "../modules/app"
-  public_key_path   = var.public_key_path
-  zone              = var.zone
-  app_disk_image    = var.app_disk_image
-  source_ranges     = ["93.123.189.16/32"]
-  app_instance_name = "reddit-app-stg"
-  auto_restart      = false
-  preempt           = true
-  instance_count    = 1
+  source          = "../modules/app"
+  public_key_path = var.public_key_path
+  zone            = var.zone
+  app_disk_image  = var.app_disk_image
+  source_ranges   = ["93.123.189.16/32"]
+  instance_count  = 1
 }
 
 module "db" {
-  source           = "../modules/db"
-  public_key_path  = var.public_key_path
-  zone             = var.zone
-  db_disk_image    = var.db_disk_image
-  db_instance_name = "reddit-dbs-stg"
-  auto_restart     = false
-  preempt          = true
+  source          = "../modules/db"
+  public_key_path = var.public_key_path
+  zone            = var.zone
+  db_disk_image   = var.db_disk_image
 }
 
 module "vpc" {
