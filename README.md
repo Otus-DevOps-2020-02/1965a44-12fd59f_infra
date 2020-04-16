@@ -206,7 +206,7 @@ _Other_:
 
 
 ### HOMEWORK 7  
-_Terraform_
+_Terraform part 2_
 
 A little hint to show a summary for terraform execution plan using the alias `tfplan`:
 
@@ -227,8 +227,7 @@ _Terraform docs_:
 <https://www.terraform.io/docs/configuration/resources.html#depends_on-explicit-resource-dependencies>  
 
 
-**Advanced task 1**
-
+**Advanced task 1**  
 In this task tracking and the state of Terraform objects is transferred to Google Cloud Storage: [terraform/stage/backend.tf](terraform/stage/backend.tf)  
 Before you need to create a bucket: [terraform/storage-bucket.tf](terraform/storage-bucket.tf)  
 
@@ -249,15 +248,14 @@ _Terraform docs_:
 <https://www.terraform.io/docs/providers/terraform/d/remote_state.html>  
 <https://www.terraform.io/docs/providers/google/r/storage_bucket.html>
 
-_Terraform modules_:
+_Terraform modules_:  
 <https://www.terraform.io/docs/modules/index.html>  
 <https://www.terraform.io/docs/configuration/modules.html>  
 <https://registry.terraform.io/modules/SweetOps/storage-bucket/google/0.3.1>
 
 
-**Advanced task 2**
-
-Adding provisioners to modules with some considerations. Look closely at differences in commit [23069ff](https://github.com/Otus-DevOps-2020-02/1965a44-12fd59f_infra/commit/23069ff) 
+**Advanced task 2**  
+Adding provisioners to modules with some considerations. Look closely at differences in commit [14a016b](https://github.com/Otus-DevOps-2020-02/1965a44-12fd59f_infra/commit/14a016b)
 
 
 **NOTE**: You can get the error below due to misconfigured [_file provisioner_](https://www.terraform.io/docs/provisioners/file.html) argument: [_source_](https://www.terraform.io/docs/provisioners/file.html#source) instead of [_content_](https://www.terraform.io/docs/provisioners/file.html#content) along with [_templatefile_](https://www.terraform.io/docs/configuration/functions/templatefile.html) funtion. 
@@ -268,6 +266,7 @@ Adding provisioners to modules with some considerations. Look closely at differe
 
 Optionally, you can use [_conditional expressions_](https://www.terraform.io/docs/configuration/expressions.html#conditional-expressions) along with `count` to define an [_if statement_](http://www.devlo.io/if-else-terraform.html) which one create a resource with provisioners and another without it. But this approach has a drawback, that you cannot use `count` to create [_multiple resources_](https://www.terraform.io/docs/configuration/resources.html#count-multiple-resource-instances-by-count), additionally there are another [_limitations_](https://blog.gruntwork.io/terraform-tips-tricks-loops-if-statements-and-gotchas-f739bbae55f9#42b9).
 
+
 **References:**  
 _Terraform documents_:  
 <https://www.terraform.io/docs/configuration/expressions.html#path-module>  
@@ -276,11 +275,11 @@ _Terraform documents_:
 <https://www.terraform.io/docs/configuration/data-sources.html>  
 <https://www.terraform.io/docs/configuration/expressions.html#data-lt-data-type-gt-lt-name-gt->  
 <https://www.terraform.io/docs/providers/google/r/compute_instance.html#attributes-reference>  
-<https://www.terraform.io/docs/providers/google/r/compute_instance.html#network_interface-0-network_ip>
-<https://www.terraform.io/docs/providers/google/r/compute_instance.html#allow_stopping_for_update>    
+<https://www.terraform.io/docs/providers/google/r/compute_instance.html#network_interface-0-network_ip>  
+<https://www.terraform.io/docs/providers/google/r/compute_instance.html#allow_stopping_for_update>  
 <https://www.terraform.io/docs/providers/google/d/datasource_compute_instance.html#network_interface-0-network_ip>  
 <https://www.terraform.io/docs/configuration/expressions.html#module-lt-module-name-gt-lt-output-name-gt->
 
-_Read list_:
+_Read list_:  
 <https://www.terraform.io/docs/configuration/variables.html>  
 <https://www.terraform.io/docs/configuration/expressions.html>
