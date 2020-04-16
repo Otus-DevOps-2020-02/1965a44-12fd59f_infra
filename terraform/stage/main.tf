@@ -17,10 +17,12 @@ variable region {
 variable zone {
   description = "Zone"
   default     = "europe-west1-d"
-
 }
 variable public_key_path {
   description = "Path to the public key used to connect to instance"
+}
+variable "private_key_path" {
+  description = "Path to the secret key used by provisioner"
 }
 variable app_disk_image {
   description = "Base disk image for reddit-app"
@@ -30,14 +32,26 @@ variable db_disk_image {
 }
 
 ##################################################################################
+# DATA
+##################################################################################
+
+data "google_compute_instance" "db" {
+  name       = "reddit-db"
+  zone       = var.zone
+  depends_on = [module.db]
+}
+
+##################################################################################
 # MODULES
 ##################################################################################
 
 module "app" {
   source          = "../modules/app"
   public_key_path = var.public_key_path
+  priv_key_path   = var.private_key_path
   zone            = var.zone
   app_disk_image  = var.app_disk_image
+  db_ipaddr       = data.google_compute_instance.db.network_interface.0.network_ip
   source_ranges   = ["93.123.189.16/32"]
   instance_count  = 1
 }
@@ -45,13 +59,14 @@ module "app" {
 module "db" {
   source          = "../modules/db"
   public_key_path = var.public_key_path
+  priv_key_path   = var.private_key_path
   zone            = var.zone
   db_disk_image   = var.db_disk_image
 }
 
 module "vpc" {
   source        = "../modules/vpc"
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["93.123.189.16/32"]
 }
 
 ##################################################################################

@@ -17,10 +17,12 @@ variable region {
 variable zone {
   description = "Zone"
   default     = "europe-west1-d"
-
 }
 variable public_key_path {
   description = "Path to the public key used to connect to instance"
+}
+variable "private_key_path" {
+  description = "Path to the secret key used by provisioner"
 }
 variable app_disk_image {
   description = "Base disk image for reddit-app"
@@ -36,22 +38,25 @@ variable db_disk_image {
 module "app" {
   source          = "../modules/app"
   public_key_path = var.public_key_path
+  priv_key_path   = var.private_key_path
   zone            = var.zone
   app_disk_image  = var.app_disk_image
-  source_ranges   = ["93.123.189.16/32"]
+  db_ipaddr       = module.db.db_internal_ip
+  source_ranges   = ["0.0.0.0/0"]
   instance_count  = 1
 }
 
 module "db" {
   source          = "../modules/db"
   public_key_path = var.public_key_path
+  priv_key_path   = var.private_key_path
   zone            = var.zone
   db_disk_image   = var.db_disk_image
 }
 
 module "vpc" {
   source        = "../modules/vpc"
-  source_ranges = ["93.123.189.16/32"]
+  source_ranges = ["0.0.0.0/0"]
 }
 
 ##################################################################################

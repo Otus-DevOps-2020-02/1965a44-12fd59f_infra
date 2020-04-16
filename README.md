@@ -205,16 +205,21 @@ _Other_:
 
 
 
-### HOMEWORK 7
+### HOMEWORK 7  
 _Terraform_
 
 A little hint to show a summary for terraform execution plan using the alias `tfplan`:
 
     echo "alias tfplan='terraform plan | grep \"# google\|# module\|Plan:\"'" >> ~/.bash_aliases
+    
+The similar way to view a summary state of terraform is creating alias `tfshow`:
 
+    echo "alias tfshow='terraform show | grep \"# google\|# module\|Plan:\"'" >> ~/.bash_aliases
+    
 Customize the `diff` command:
 
     echo "alias diff='diff --color -u'" >> ~/.bash_aliases
+    . ~/.bash_aliases
 
 **References:**  
 _Terraform docs_:  
@@ -245,5 +250,37 @@ _Terraform docs_:
 <https://www.terraform.io/docs/providers/google/r/storage_bucket.html>
 
 _Terraform modules_:
-<https://registry.terraform.io/modules/SweetOps/storage-bucket/google/0.3.1>  
-<https://www.terraform.io/docs/modules/sources.html>  
+<https://www.terraform.io/docs/modules/index.html>  
+<https://www.terraform.io/docs/configuration/modules.html>  
+<https://registry.terraform.io/modules/SweetOps/storage-bucket/google/0.3.1>
+
+
+**Advanced task 2**
+
+Adding provisioners to modules with some considerations. Look closely at differences in commit [23069ff](https://github.com/Otus-DevOps-2020-02/1965a44-12fd59f_infra/commit/23069ff) 
+
+
+**NOTE**: You can get the error below due to misconfigured [_file provisioner_](https://www.terraform.io/docs/provisioners/file.html) argument: [_source_](https://www.terraform.io/docs/provisioners/file.html#source) instead of [_content_](https://www.terraform.io/docs/provisioners/file.html#content) along with [_templatefile_](https://www.terraform.io/docs/configuration/functions/templatefile.html) funtion. 
+
+    module.app.google_compute_instance.app[0]: Provisioning with 'file'...
+
+    Error: stat : no such file or directory
+
+Optionally, you can use [_conditional expressions_](https://www.terraform.io/docs/configuration/expressions.html#conditional-expressions) along with `count` to define an [_if statement_](http://www.devlo.io/if-else-terraform.html) which one create a resource with provisioners and another without it. But this approach has a drawback, that you cannot use `count` to create [_multiple resources_](https://www.terraform.io/docs/configuration/resources.html#count-multiple-resource-instances-by-count), additionally there are another [_limitations_](https://blog.gruntwork.io/terraform-tips-tricks-loops-if-statements-and-gotchas-f739bbae55f9#42b9).
+
+**References:**  
+_Terraform documents_:  
+<https://www.terraform.io/docs/configuration/expressions.html#path-module>  
+<https://www.terraform.io/docs/provisioners/index.html>  
+<https://www.terraform.io/docs/provisioners/connection.html#the-self-object>  
+<https://www.terraform.io/docs/configuration/data-sources.html>  
+<https://www.terraform.io/docs/configuration/expressions.html#data-lt-data-type-gt-lt-name-gt->  
+<https://www.terraform.io/docs/providers/google/r/compute_instance.html#attributes-reference>  
+<https://www.terraform.io/docs/providers/google/r/compute_instance.html#network_interface-0-network_ip>
+<https://www.terraform.io/docs/providers/google/r/compute_instance.html#allow_stopping_for_update>    
+<https://www.terraform.io/docs/providers/google/d/datasource_compute_instance.html#network_interface-0-network_ip>  
+<https://www.terraform.io/docs/configuration/expressions.html#module-lt-module-name-gt-lt-output-name-gt->
+
+_Read list_:
+<https://www.terraform.io/docs/configuration/variables.html>  
+<https://www.terraform.io/docs/configuration/expressions.html>
