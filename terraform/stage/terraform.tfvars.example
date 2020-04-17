@@ -3,3 +3,4 @@ public_key_path  = "path/to/key.pub"
 private_key_path = "path/to/key"
 app_disk_image   = "image-family"
 db_disk_image    = "image-family"
+allowed_ip       = ["1.1.1.1/32"]

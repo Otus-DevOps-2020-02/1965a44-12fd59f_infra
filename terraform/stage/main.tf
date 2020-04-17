@@ -30,6 +30,9 @@ variable app_disk_image {
 variable db_disk_image {
   description = "Base disk image for mongodb"
 }
+variable "allowed_ip" {
+  type = list(string)
+}
 
 ##################################################################################
 # DATA
@@ -52,7 +55,7 @@ module "app" {
   zone            = var.zone
   app_disk_image  = var.app_disk_image
   db_ipaddr       = data.google_compute_instance.db.network_interface.0.network_ip
-  source_ranges   = ["93.123.189.16/32"]
+  source_ranges   = var.allowed_ip
   instance_count  = 1
 }
 
@@ -66,7 +69,7 @@ module "db" {
 
 module "vpc" {
   source        = "../modules/vpc"
-  source_ranges = ["93.123.189.16/32"]
+  source_ranges = var.allowed_ip
 }
 
 ##################################################################################
