@@ -1,0 +1,26 @@
+plugin: gcp_compute
+auth_kind: application
+scopes:
+  - 'https://www.googleapis.com/auth/cloud-platform'
+  - 'https://www.googleapis.com/auth/compute.readonly'
+cache: yes
+cache_plugin: jsonfile
+cache_timeout: 7200
+cache_connection: "./gcp_inventory"
+cache_prefix: gcp_compute
+projects:
+# поменять на настоящее имя проекта
+  - my-project-name
+hostnames:
+  - name
+#keyed_groups:
+#  - prefix: ""
+#    key: labels
+groups:
+  app: "'app' in name"
+  db: "'db' in name"
+filters:
+  - name != bastion
+  - name != someinternalhost
+compose:
+  ansible_host: networkInterfaces[0].accessConfigs[0].natIP
