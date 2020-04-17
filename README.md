@@ -3,7 +3,7 @@
 
 Previous README is here: [README.md](README01.md)
 
-##### Text formatting
+**Text formatting**  
 [Basic writing and formatting syntax](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax)  
 [Markdown Guide](https://www.markdownguide.org/basic-syntax)
 
@@ -97,6 +97,7 @@ Previous README is here: [README.md](README01.md)
 > The JSON format has the same semantics as the YAML format.
 > Note: not the same format as the dynamic inventory.  
 [Reference](https://stackoverflow.com/questions/48680425/how-to-use-json-file-consisting-of-host-info-as-input-to-ansible-inventory)
+
 
 
 #### Guidances:
