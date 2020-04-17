@@ -12,6 +12,7 @@ Previous README is here: [README.md](README01.md)
 ### HOMEWORK 8
 #### Основы работы с Ansible
 Запуск Ansible playbook с уже выполненными задачами не вносит изменений (идемпотентность), как видно по коду ответа **changed=0**, в противном случае код ответа будет не нулевой:
+
 `$ ansible-playbook clone.yml`
 
 **result**:
@@ -52,6 +53,7 @@ Previous README is here: [README.md](README01.md)
       ansible_host: networkInterfaces[0].accessConfigs[0].natIP
 ```
 При его вызове через утилиту `ansible-inventory` можно получить общее описание инфраструктуры, которую видит _Ansible_:
+
 `$ ansible-inventory -i gcp.yml --graph`
 
 **result**:
@@ -64,6 +66,7 @@ Previous README is here: [README.md](README01.md)
       |--@ungrouped:
 
 Проверка:
+
 `$ ansible all -i gcp.yml -m ping`
 
 **result**:
@@ -84,6 +87,7 @@ Previous README is here: [README.md](README01.md)
     }
 
 Чтобы получить файл с описанием инфраструктуры (_inventory_) в формате JSON, необходимо выполнить следующую команду:
+
 `$ ansible-inventory -i gcp.yml --list --output inventory.json`
 
 
@@ -91,12 +95,11 @@ Previous README is here: [README.md](README01.md)
 > Ansible's yaml plugin will actually parse a JSON file, and has done so for years.
 > It's barely documented but you can see in the parameters section of the yaml plugin docs, .json is listed as a valid extension.
 > The JSON format has the same semantics as the YAML format.
-> Note: not the same format as the dynamic inventory.
-
+> Note: not the same format as the dynamic inventory.  
 [Reference](https://stackoverflow.com/questions/48680425/how-to-use-json-file-consisting-of-host-info-as-input-to-ansible-inventory)
 
 
-##### Guidances:
+#### Guidances:
 _Ansible documents_:  
 https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html  
 https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html#intro-dynamic-inventory  
