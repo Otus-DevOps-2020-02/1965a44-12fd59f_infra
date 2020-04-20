@@ -32,12 +32,12 @@ resource "google_compute_instance" "db" {
     # путь до приватного ключа
     private_key = file(var.priv_key_path)
   }
-  provisioner "remote-exec" {
-    inline = [
-      "sudo sed -i 's/bindIp:.*$/bindIp: ${self.network_interface.0.network_ip}/;' /etc/mongod.conf",
-      "sudo systemctl restart mongod"
-    ]
-  }
+#  provisioner "remote-exec" {
+#    inline = [
+#      "sudo sed -i 's/bindIp:.*$/bindIp: ${self.network_interface.0.network_ip}/;' /etc/mongod.conf",
+#      "sudo systemctl restart mongod"
+#    ]
+#  }
 
 }
 

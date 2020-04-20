@@ -59,3 +59,36 @@
 
     ansible-inventory -i gcp.yml --list --output inventory.json
     ansible-inventory -i gcp.yml --list --yaml --output inventory.yaml
+
+**Syntax check**
+
+    ansible-playbook --syntax-check reddit-app.yml
+
+**Dry run плейбука**
+
+    ansible-playbook --check reddit-app.yml --limit db
+
+**Running playbook within a scope of a single host or a group of hosts**
+
+    ansible-playbook reddit-app.yml --limit db
+
+**Various options of ansible-playbook**
+
+--limit _<grpup|host>_  
+--diff –-check  
+--inventory _<file>_  
+--list-tags  
+--tags _tagA_\[,_tagB,tagC_\]  
+--skip-tags _tagA_\[,_tagB,tagC_\]  
+--list-hosts  
+--list-tasks  
+--start-at-task _<task_name>_  
+--force-handlers
+
+    ansible-playbook -t debug --check reddit-app.yml
+    ansible-playbook -t db,debug --check --diff reddit-app.yml
+    ansible-playbook  --list-tags reddit-app.yml
+    ansible-playbook  --list-hosts reddit-app.yml
+    ansible-playbook  --list-tasks reddit-app.yml
+    ansible-playbook --list-hosts --list-tags --list-tasks reddit-app.yml
+    ansible-playbook --force-handlers app.yml
