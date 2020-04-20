@@ -20,7 +20,7 @@ Previous README is here: [README.md](README01.md)
 
 Изменён провижн образов Packer на Ansible-плейбуки.
 
-★ В качестве dynamic_inventory используется Ansible plugin _gcp\_compute_: [`gcp.yml`](ansible/gcp.yml)
+★ В качестве dynamic_inventory используется Ansible plugin _gcp\_compute_: [`gcp.yml`](ansible/gcp.yml.example)
 
 **NOTE:** В качестве частного улучшения переменные в плейбуках получают значения на основе _ansible\_facts_.  
 Так же настроено кеширование, которое помогает лучше использовать _Hostvars_. 
