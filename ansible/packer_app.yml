@@ -1,0 +1,13 @@
+---
+- name: Install Ruby && Bundler
+  hosts: all
+  become: true
+  tasks:
+  # Установим в цикле все зависимости
+  - name: Install ruby and rubygems and required packages
+    apt:
+      state: present
+      pkg:
+      - ruby-full
+      - ruby-bundler
+      - build-essential

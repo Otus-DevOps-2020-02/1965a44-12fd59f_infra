@@ -9,8 +9,50 @@ Previous README is here: [README.md](README01.md)
 
 
 
-### HOMEWORK 8
-#### Основы работы с Ansible
+## HOMEWORK 9
+### Работа с плэйбуками Ansible
+
+Использование плейбуков, хендлеров и шаблонов для конфигурации окружения и деплоя тестового приложения.
+Рассмотрены три подхода:
+ - Один плейбук, один сценарий (play)
+ - Один плейбук, но много сценариев
+ - Много плейбуков.
+
+Изменён провижн образов Packer на Ansible-плейбуки.
+
+★ В качестве dynamic_inventory используется Ansible plugin _gcp\_compute_: [`gcp.yml`](ansible/gcp.yml)
+
+**NOTE:** В качестве частного улучшения переменные в плейбуках получают значения на основе _ansible\_facts_.  
+Так же настроено кеширование, которое помогает лучше использовать _Hostvars_. 
+
+#### Guidances:
+_Ansible documents_:  
+https://docs.ansible.com/ansible/ansible-playbook.html  
+https://docs.ansible.com/ansible/playbooks_intro.html  
+https://docs.ansible.com/ansible/playbooks_variables.html  
+https://docs.ansible.com/ansible/playbooks_loops.html  
+https://docs.ansible.com/ansible/config.html
+
+_Ansible modules_:  
+http://docs.ansible.com/ansible/template_module.html  
+http://docs.ansible.com/ansible/service_module.html  
+http://docs.ansible.com/ansible/systemd_module.html  
+http://docs.ansible.com/ansible/copy_module.html  
+http://docs.ansible.com/ansible/debug_module.html  
+http://docs.ansible.com/ansible/setup_module.html  
+http://docs.ansible.com/ansible/bundler_module.html  
+http://docs.ansible.com/ansible/git_module.html  
+https://docs.ansible.com/ansible/apt_module.html  
+http://docs.ansible.com/ansible/apt_key_module.html  
+http://docs.ansible.com/ansible/apt_repository_module.html
+
+_Packer and Ansible_:  
+https://www.packer.io/docs/provisioners/ansible.html
+
+
+
+## HOMEWORK 8
+### Основы работы с Ansible
 Запуск Ansible playbook с уже выполненными задачами не вносит изменений (идемпотентность), как видно по кол-ву кода ответа **changed=0**, в противном случае кол-во кодов ответа **changed** будет не нулевым:
 
 `$ ansible-playbook clone.yml`
@@ -102,14 +144,15 @@ Previous README is here: [README.md](README01.md)
 
 #### Guidances:
 _Ansible documents_:  
-https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html  
-https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html#intro-dynamic-inventory  
-https://docs.ansible.com/ansible/latest/plugins/inventory.html  
-https://docs.ansible.com/ansible/latest/plugins/inventory/gcp_compute.html  
-https://docs.ansible.com/ansible/latest/plugins/inventory/yaml.html#parameters  
-https://docs.ansible.com/ansible/latest/cli/ansible.html  
-https://docs.ansible.com/ansible/latest/cli/ansible-doc.html  
-https://docs.ansible.com/ansible/latest/cli/ansible-inventory.html
+https://docs.ansible.com/ansible/config.html  
+https://docs.ansible.com/ansible/user_guide/intro_inventory.html  
+https://docs.ansible.com/ansible/user_guide/intro_dynamic_inventory.html
+https://docs.ansible.com/ansible/plugins/inventory.html  
+https://docs.ansible.com/ansible/plugins/inventory/gcp_compute.html  
+https://docs.ansible.com/ansible/plugins/inventory/yaml.html#parameters  
+https://docs.ansible.com/ansible/ansible.html  
+https://docs.ansible.com/ansible/ansible-doc.html  
+https://docs.ansible.com/ansible/ansible-inventory.html
 
 _Gcloud docs_:  
 https://cloud.google.com/iam/docs/understanding-service-accounts  
